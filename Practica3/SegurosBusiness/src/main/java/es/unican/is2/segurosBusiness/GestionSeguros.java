@@ -11,13 +11,17 @@ import es.unican.is2.segurosCommon.Seguro;
 
 public class GestionSeguros implements IGestionSeguros,IGestionClientes, IInfoSeguros {
 	
+	private IClientesDAO daoContribuyentes;
+	
+	private ISegurosDAO daoVehiculos;
+	
 	public GestionSeguros(IClientesDAO daoContribuyentes, ISegurosDAO daoVehiculos) {
 		
 	}
 	
 	public Cliente cliente(String dni) {
 		// TODO Auto-generated method stub
-		return null;
+		return IClientesDAO;
 	}
 
 	public Seguro seguro(String matricula) {
