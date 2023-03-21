@@ -18,8 +18,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "Seguro")
 public class Seguro {
 	
-	private static final double PORCENTAJE_TRAMO_1 = 0.95;
-	private static final double PORCENTAJE_TRAMO_2 = 0.80;
+	private static final double COBERTURA_TODO_RIESGO = 1000;
+	private static final double COBERTURA_TERCEROS_LUNAS = 600;
+	private static final double COBERTURA_TERCEROS = 400;
+	private static final double PORCENTAJE_TRAMO_1 = 1.05;
+	private static final double PORCENTAJE_TRAMO_2 = 1.2;
 	private static final int INICIO_TRAMO_1= 90;
 	private static final int FIN_TRAMO_1=110;
 	private static final double DESCUENTO_PRIMER_ANHO = 0.8;
@@ -91,7 +94,37 @@ public class Seguro {
      * @return
      */
     public double precio() {
-    	return 0;
+    	double precio = 0;
+    	
+    	// precio inicial segun nivel de cobertura
+    	switch(this.cobertura) {
+    		case TODORIESGO:
+    			precio = COBERTURA_TODO_RIESGO;
+    		case TERCEROSLUNAS:
+    			precio = COBERTURA_TERCEROS_LUNAS;
+    		case TERCEROS:
+    			precio = COBERTURA_TERCEROS;
+			default:
+				break;
+    	}
+    	
+    	// aumento segun potencia del coche
+    	if(this.potencia >= INICIO_TRAMO_1 && this.potencia <= FIN_TRAMO_1) {
+    		precio = precio * PORCENTAJE_TRAMO_1;
+    	} else if(this.potencia > FIN_TRAMO_1) {
+    		precio = precio * PORCENTAJE_TRAMO_2;
+    	}
+    	
+    	// descuento de oferta
+    	LocalDate diferenciaTiempoAnho = LocalDate.now().minusYears(1);
+    	LocalDate diferenciaTiempo2Anhos = LocalDate.now().minusYears(2);
+    	if(this.fechaContratacion.isAfter(diferenciaTiempoAnho)) {
+    		precio = precio * DESCUENTO_PRIMER_ANHO;
+    	} else if(this.fechaContratacion.isAfter(diferenciaTiempo2Anhos)) {
+    		precio = precio * DESCUENTO_SEGUNDO_ANHO;
+    	}
+    		
+    	return precio;
     }
 
 }

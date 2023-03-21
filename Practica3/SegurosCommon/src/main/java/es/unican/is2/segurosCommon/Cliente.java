@@ -31,6 +31,7 @@ public class Cliente {
     @XmlAttribute(required = true)
     private boolean minusvalia;
     
+    private static final double DESCUENTO_MINUSVALIA = 0.75;
     
     public Cliente(){}  
 
@@ -96,7 +97,15 @@ public class Cliente {
      * todos los seguros a su nombre
      */
     public double totalSeguros() {
-    	return 0;
+    	double totalPrecio = 0;
+    	for (Seguro s : this.seguros) {
+    		totalPrecio += s.precio();
+    	}
+    	
+    	if(this.minusvalia) {
+    		totalPrecio = totalPrecio * DESCUENTO_MINUSVALIA;
+    	}
+    	return totalPrecio;
     }
 
 }
