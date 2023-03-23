@@ -42,7 +42,12 @@ public class Seguro {
     @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate fechaContratacion;
     
-    public Seguro() {}
+    public Seguro(String matricula, Cobertura cobertura, int potencia, LocalDate fechaContratacion) {
+    	this.potencia = potencia;
+    	this.matricula = matricula;
+    	this.cobertura = cobertura;
+    	this.fechaContratacion = fechaContratacion;
+    }
 
 	/**
 	 * Retorna la matrícula del coche 
