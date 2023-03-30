@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Clase que representa un seguro de coche.
- * Un seguro se identifica por la matrícula
+ * Un seguro se identifica por la matrï¿½cula
  * del coche para el que se contrata el seguro
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -50,7 +50,7 @@ public class Seguro {
     }
 
 	/**
-	 * Retorna la matrícula del coche 
+	 * Retorna la matrï¿½cula del coche 
 	 * asociado al seguro
 	 */
 	public String getMatricula() {
@@ -58,7 +58,7 @@ public class Seguro {
 	}
 
 	/**
-	 * Define el valor para la matrícula
+	 * Define el valor para la matrï¿½cula
 	 */
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
@@ -97,18 +97,22 @@ public class Seguro {
     /**
      * Retorna el precio del seguro
      * @return
+     * @throws DatoNoValido 
      */
-    public double precio() {
+    public double precio() throws DatoNoValido {
     	double precio = 0;
     	
     	// precio inicial segun nivel de cobertura
     	switch(this.cobertura) {
     		case TODORIESGO:
     			precio = COBERTURA_TODO_RIESGO;
+    			break;
     		case TERCEROSLUNAS:
     			precio = COBERTURA_TERCEROS_LUNAS;
+    			break;
     		case TERCEROS:
     			precio = COBERTURA_TERCEROS;
+    			break;
 			default:
 				break;
     	}
@@ -118,16 +122,22 @@ public class Seguro {
     		precio = precio * PORCENTAJE_TRAMO_1;
     	} else if(this.potencia > FIN_TRAMO_1) {
     		precio = precio * PORCENTAJE_TRAMO_2;
+    	} else if(this.potencia == 0) {
+    		throw new DatoNoValido("La potencia no puede ser cero");
+    	} else if(this.potencia < 0){
+    		throw new DatoNoValido("La potencia no puede ser negativa");
     	}
     	
     	// descuento de oferta
     	LocalDate diferenciaTiempoAnho = LocalDate.now().minusYears(1);
     	LocalDate diferenciaTiempo2Anhos = LocalDate.now().minusYears(2);
-    	if(this.fechaContratacion.isAfter(diferenciaTiempoAnho)) {
+    	if (LocalDate.now().isBefore(this.fechaContratacion)) {
+    		throw new DatoNoValido("La fecha de contratacion no puede ser superior al dia actual");
+    	} else if(this.fechaContratacion.isAfter(diferenciaTiempoAnho)) {
     		precio = precio * DESCUENTO_PRIMER_ANHO;
     	} else if(this.fechaContratacion.isAfter(diferenciaTiempo2Anhos)) {
     		precio = precio * DESCUENTO_SEGUNDO_ANHO;
-    	}
+    	} 
     		
     	return precio;
     }

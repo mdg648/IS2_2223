@@ -82,7 +82,7 @@ public class Cliente {
     }
     
     /**
-     * Indica si el cliente es minusválido
+     * Indica si el cliente es minusvï¿½lido
      */
     public boolean getMinusvalia() {
     	return minusvalia;
@@ -95,8 +95,9 @@ public class Cliente {
     /**
      * Calcula el total a pagar por el cliente por 
      * todos los seguros a su nombre
+     * @throws DatoNoValido 
      */
-    public double totalSeguros() {
+    public double totalSeguros() throws DatoNoValido {
     	double totalPrecio = 0;
     	for (Seguro s : this.seguros) {
     		totalPrecio += s.precio();

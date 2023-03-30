@@ -10,21 +10,34 @@ import org.junit.jupiter.api.Test;
 
 public class SeguroTest {
 	// excepciones
+	Seguro seguroValido1;
+	Seguro seguroValido2;
+	Seguro seguroValido3;
+	Seguro seguroValido4;
+	Seguro seguroValido5;
+	Seguro seguroValido6;
+	Seguro seguroValido7;
+	Seguro seguroValido8;
 	
+	Seguro seguroNoValido1;
+	Seguro seguroNoValido2;
+	Seguro seguroNoValido3;
+	Seguro seguroNoValido4;
+	Seguro seguroNoValido5;
 	
 	@Test
 	public void testPrecio() {
 		double precio = 0.0;
 		// Casos validos 
-		Seguro seguroValido1 = new Seguro("1234ABC", Cobertura.TODORIESGO, 90, LocalDate.now().minusDays(364));
-		Seguro seguroValido2 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 100, LocalDate.now().minusDays(150));
-		Seguro seguroValido3 = new Seguro("1234ABC", Cobertura.TERCEROS, 110, LocalDate.now());
-		Seguro seguroValido4 = new Seguro("1234ABC", Cobertura.TODORIESGO, 111, LocalDate.now().minusDays(729));
-		Seguro seguroValido5 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 300, LocalDate.now().minusDays(500));
-		Seguro seguroValido6 = new Seguro("1234ABC", Cobertura.TERCEROS, 89, LocalDate.now().minusDays(365));
-		Seguro seguroValido7 = new Seguro("1234ABC", Cobertura.TODORIESGO, 1, LocalDate.now().minusDays(730));
-		Seguro seguroValido8 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 90, LocalDate.now().minusDays(1000));
-		
+		seguroValido1 = new Seguro("1234ABC", Cobertura.TODORIESGO, 90, LocalDate.now().minusDays(364));
+		seguroValido2 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 100, LocalDate.now().minusDays(150));
+		seguroValido3 = new Seguro("1234ABC", Cobertura.TERCEROS, 110, LocalDate.now());
+		seguroValido4 = new Seguro("1234ABC", Cobertura.TODORIESGO, 111, LocalDate.now().minusDays(729));
+		seguroValido5 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 300, LocalDate.now().minusDays(500));
+		seguroValido6 = new Seguro("1234ABC", Cobertura.TERCEROS, 89, LocalDate.now().minusDays(365));
+		seguroValido7 = new Seguro("1234ABC", Cobertura.TODORIESGO, 1, LocalDate.now().minusDays(730));
+		seguroValido8 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 90, LocalDate.now().minusDays(1000));
+
 		try {
 			precio = seguroValido1.precio();
 			assertEquals(840, precio, "Obtenido: " + precio);
@@ -82,11 +95,11 @@ public class SeguroTest {
 		}
 		
 		// Casos no validos
-		Seguro seguroNoValido1 = new Seguro("1234ABC", Cobertura.TODORIESGO, 0, LocalDate.now());
-		Seguro seguroNoValido2 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, -100, LocalDate.now());
-		Seguro seguroNoValido3 = new Seguro("1234ABC", Cobertura.TERCEROS, 90, null);
-		Seguro seguroNoValido4 = new Seguro("1234ABC", Cobertura.TODORIESGO, 100, LocalDate.now().plusDays(1));
-		Seguro seguroNoValido5 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 110, LocalDate.now().plusDays(365));
+		seguroNoValido1 = new Seguro("1234ABC", Cobertura.TODORIESGO, 0, LocalDate.now());
+		seguroNoValido2 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, -100, LocalDate.now());
+		seguroNoValido3 = new Seguro("1234ABC", Cobertura.TERCEROS, 90, null);
+		seguroNoValido4 = new Seguro("1234ABC", Cobertura.TODORIESGO, 100, LocalDate.now().plusDays(1));
+		seguroNoValido5 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 110, LocalDate.now().plusDays(365));
 		
 		DatoNoValido thrown;
 		
