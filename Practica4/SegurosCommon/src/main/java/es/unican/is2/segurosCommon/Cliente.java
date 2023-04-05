@@ -33,7 +33,11 @@ public class Cliente {
     
     private static final double DESCUENTO_MINUSVALIA = 0.75;
     
-    public Cliente(){}  
+    public Cliente(String nombre, String dni, boolean minusvalia) {
+    	this.nombre = nombre;
+    	this.dni = dni;
+    	this.minusvalia = minusvalia;
+    }  
 
 	/**
      * Retorna los seguros del cliente 

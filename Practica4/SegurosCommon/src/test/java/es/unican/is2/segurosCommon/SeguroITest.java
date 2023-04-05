@@ -8,8 +8,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-public class SeguroTest {
-	// excepciones
+public class SeguroITest {
 	Seguro seguroValido1;
 	Seguro seguroValido2;
 	Seguro seguroValido3;

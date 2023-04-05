@@ -17,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.border.LineBorder;
 
 import es.unican.is2.segurosCommon.Cliente;
+import es.unican.is2.segurosCommon.DatoNoValido;
 import es.unican.is2.segurosCommon.IGestionClientes;
 import es.unican.is2.segurosCommon.IGestionSeguros;
 import es.unican.is2.segurosCommon.IInfoSeguros;
@@ -109,7 +110,12 @@ public class VistaAgente extends JFrame {
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rellenaDatosCliente(txtNombreCliente.getText());
+				try {
+					rellenaDatosCliente(txtNombreCliente.getText());
+				} catch (DatoNoValido e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnBuscar.setBounds(21, 122, 89, 23);
@@ -118,7 +124,7 @@ public class VistaAgente extends JFrame {
 		listSeguros.setVisible(true);
 	}
 
-	private void rellenaDatosCliente(String dni) {
+	private void rellenaDatosCliente(String dni) throws DatoNoValido {
 		Cliente c = info.cliente(dni);
 		if (c!=null) {
 			txtNombreCliente.setText(c.getNombre());
