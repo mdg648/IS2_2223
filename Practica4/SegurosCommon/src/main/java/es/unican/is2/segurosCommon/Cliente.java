@@ -103,7 +103,7 @@ public class Cliente {
      * todos los seguros a su nombre
      * @throws DatoNoValido 
      */
-    public double totalSeguros() throws DatoNoValido {
+    public double totalSeguros() {
     	double totalPrecio = 0;
     	for (Seguro s : this.seguros) {
     		totalPrecio += s.precio();
