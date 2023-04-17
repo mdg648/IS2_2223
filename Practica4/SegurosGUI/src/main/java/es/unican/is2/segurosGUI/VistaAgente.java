@@ -77,6 +77,8 @@ public class VistaAgente extends JFrame {
 		contentPane.add(listSeguros);
 		listSeguros.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listSeguros.setModel(listModel);
+		// linea para acceder en el test a listSeguros
+		listSeguros.setName("listSeguros");
 		
 		JLabel lblSeguros = new JLabel("Seguros");
 		lblSeguros.setBounds(149, 93, 65, 14);
@@ -111,7 +113,7 @@ public class VistaAgente extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					rellenaDatosCliente(txtNombreCliente.getText());
+					rellenaDatosCliente(txtDniCliente.getText());
 				} catch (DatoNoValido e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -134,7 +136,7 @@ public class VistaAgente extends JFrame {
 				listModel.addElement(v.getMatricula() + " "+v.getCobertura());
 			}
 		} else {
-			txtNombreCliente.setText(txtNombreCliente.getText());
+			txtNombreCliente.setText("");
 			txtTotalCliente.setText("");
 			listModel.removeAllElements();
 		}

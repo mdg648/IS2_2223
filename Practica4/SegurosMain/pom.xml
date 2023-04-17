@@ -6,6 +6,11 @@
 	<artifactId>segurosMain</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SegurosMain</name>
+	
+	<properties>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -31,6 +36,21 @@
 			<artifactId>segurosDAO</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.easytesting/fest-swing -->
+		<dependency>
+			<groupId>org.easytesting</groupId>
+			<artifactId>fest-swing</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.9.2</version>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
