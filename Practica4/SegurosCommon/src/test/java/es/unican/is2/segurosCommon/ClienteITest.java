@@ -34,7 +34,7 @@ public class ClienteITest {
 			seguro2 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 100, LocalDate.now().minusDays(150));
 			seguro3 = new Seguro("1234ABC", Cobertura.TERCEROS, 110, LocalDate.now());
 		} catch (DatoNoValido e1) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e1.printStackTrace();
 		}
 		listaSeguros1.add(seguro1);

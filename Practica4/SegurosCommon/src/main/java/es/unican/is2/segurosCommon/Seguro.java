@@ -151,4 +151,24 @@ public class Seguro {
     	return precio;
     }
 
+    // Metodo equals para poder comprobar si dos seguros son el mismo, se entiende que son el mismo si estan registrados con la misma matricula
+    @Override
+    public boolean equals(Object obj) {
+    	if (obj == null) {
+    		return false;
+    	}
+
+    	if (getClass() != obj.getClass()) {
+    		return false;
+    	}
+    	
+    	Seguro seguroComparar = (Seguro) obj;
+
+    	if (this.matricula.equals(seguroComparar.getMatricula())) {
+    		return true;
+    	}
+
+    	return false;
+    }
+
 }

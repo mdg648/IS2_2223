@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-public class SeguroITest {
+public class SeguroTest {
 	Seguro seguroValido1;
 	Seguro seguroValido2;
 	Seguro seguroValido3;
@@ -113,7 +113,7 @@ public class SeguroITest {
 			seguroValido7 = new Seguro("1234ABC", Cobertura.TODORIESGO, 1, LocalDate.now().minusDays(730));
 			seguroValido8 = new Seguro("1234ABC", Cobertura.TERCEROSLUNAS, 90, LocalDate.now().minusDays(1000));
 		} catch (DatoNoValido e1) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e1.printStackTrace();
 		}
 
