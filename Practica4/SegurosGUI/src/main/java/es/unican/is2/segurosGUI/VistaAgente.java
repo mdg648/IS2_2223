@@ -36,7 +36,7 @@ public class VistaAgente extends JFrame {
 	private JList<String> listSeguros; 
 	private DefaultListModel<String> listModel;
 	private JButton btnBuscar;
-	
+
 	private IGestionClientes clientes;
 	private IGestionSeguros seguros;
 	private IInfoSeguros info;
@@ -46,13 +46,13 @@ public class VistaAgente extends JFrame {
 	 */
 	public VistaAgente(IGestionClientes clientes,
 			IGestionSeguros seguros, IInfoSeguros info) {
-		
+
 		this.clientes = clientes;
 		this.seguros = seguros;
 		this.info = info;
 		init();
 	}
-	
+
 	public void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 441, 341);
@@ -61,17 +61,17 @@ public class VistaAgente extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		listModel=  new DefaultListModel<String>();
-		
+
 		txtTotalCliente = new JTextField();
 		txtTotalCliente.setBounds(230, 251, 86, 20);
 		contentPane.add(txtTotalCliente);
 		txtTotalCliente.setColumns(10);
 		txtTotalCliente.setName("txtTotalCliente");
-		
+
 		JLabel lblTotalCliente = new JLabel("Total A Pagar");
 		lblTotalCliente.setBounds(137, 254, 99, 14);
 		contentPane.add(lblTotalCliente);
-		
+
 		listSeguros = new JList<String>();
 		listSeguros.setBounds(230, 98, 160, 116);
 		contentPane.add(listSeguros);
@@ -79,45 +79,41 @@ public class VistaAgente extends JFrame {
 		listSeguros.setModel(listModel);
 		// linea para acceder en el test a listSeguros
 		listSeguros.setName("listSeguros");
-		
+
 		JLabel lblSeguros = new JLabel("Seguros");
 		lblSeguros.setBounds(149, 93, 65, 14);
 		contentPane.add(lblSeguros);
-		
+
 		JLabel lblNombreCliente = new JLabel("Nombre");
 		lblNombreCliente.setBounds(155, 54, 65, 14);
 		contentPane.add(lblNombreCliente);
-		
+
 		txtNombreCliente = new JTextField();
 		txtNombreCliente.setBounds(230, 51, 160, 20);
 		contentPane.add(txtNombreCliente);
 		txtNombreCliente.setColumns(10);
 		txtNombreCliente.setName("txtNombreCliente");
-		
+
 		JLabel lblDatosCliente = new JLabel("Datos Cliente");
 		lblDatosCliente.setBounds(230, 11, 149, 14);
 		contentPane.add(lblDatosCliente);
-		
+
 		txtDniCliente = new JTextField();
 		txtDniCliente.setBounds(10, 51, 113, 20);
 		contentPane.add(txtDniCliente);
 		txtDniCliente.setColumns(10);
 		txtDniCliente.setName("txtDNICliente");
-		
+
 		JLabel lblDniCliente = new JLabel("DNI Cliente");
 		lblDniCliente.setBounds(21, 27, 139, 14);
 		contentPane.add(lblDniCliente);
 		lblDniCliente.setName("lblDniCliente");
-		
+
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					rellenaDatosCliente(txtDniCliente.getText());
-				} catch (DatoNoValido e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				rellenaDatosCliente(txtDniCliente.getText());
+
 			}
 		});
 		btnBuscar.setBounds(21, 122, 89, 23);
@@ -126,7 +122,7 @@ public class VistaAgente extends JFrame {
 		listSeguros.setVisible(true);
 	}
 
-	private void rellenaDatosCliente(String dni) throws DatoNoValido {
+	private void rellenaDatosCliente(String dni) {
 		Cliente c = info.cliente(dni);
 		if (c!=null) {
 			txtNombreCliente.setText(c.getNombre());
@@ -140,6 +136,6 @@ public class VistaAgente extends JFrame {
 			txtTotalCliente.setText("");
 			listModel.removeAllElements();
 		}
-		
+
 	}
 }
