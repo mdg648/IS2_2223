@@ -1,3 +1,5 @@
+package es.unican.is2.p5SinRefactor;
+
 public class Cuenta {
 	
 	private String numCuenta;

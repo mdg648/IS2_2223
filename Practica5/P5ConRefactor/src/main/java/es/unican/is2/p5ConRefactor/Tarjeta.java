@@ -1,3 +1,5 @@
+package es.unican.is2.p5ConRefactor;
+
 public abstract class Tarjeta {
 	
 	protected String mNumero, mTitular;		
