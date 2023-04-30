@@ -1,14 +1,18 @@
 package es.unican.is2.p5ConRefactor;
 
+import java.time.LocalDate;
+
 public abstract class Tarjeta {
 	
 	protected String mNumero, mTitular;		
 	protected CuentaAhorro mCuentaAsociada;
+	protected LocalDate mFechaCaducidad;
 
-	public Tarjeta(String numero, String titular, CuentaAhorro c) {
+	public Tarjeta(String numero, String titular, CuentaAhorro c, LocalDate date) {
 		mNumero = numero;
 		mTitular = titular;
 		mCuentaAsociada = c;
+		this.mFechaCaducidad = date;
 	}
 
 	/**
@@ -28,5 +32,9 @@ public abstract class Tarjeta {
 	 */
 	public abstract void pagoEnEstablecimiento(String datos, double x)
 			throws saldoInsuficienteException, datoErroneoException;
+	
+	public LocalDate getFechaCaducidad() {
+		return this.mFechaCaducidad;
+	}
 	
 }

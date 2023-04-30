@@ -7,27 +7,29 @@ public class Movimiento {
 	private LocalDateTime mFecha;
 	private double mImporte;
 
-	public double getI() {
+	// refactorizacion: cambio de nombres
+	
+	public double getImporte() {
 		return mImporte;
 	}
 
-	public void setI(double newMImporte) {
+	public void setImporte(double newMImporte) {
 		mImporte = newMImporte;
 	}
 	
-	public String getC() {
+	public String getConcepto() {
 		return mConcepto;
 	}
 
-	public void setC(String newMConcepto) {
+	public void setConcepto(String newMConcepto) {
 		mConcepto = newMConcepto;
 	}
 
-	public LocalDateTime getF() {
+	public LocalDateTime getFecha() {
 		return mFecha;
 	}
 
-	public void setF(LocalDateTime newMFecha) {
+	public void setFecha(LocalDateTime newMFecha) {
 		mFecha = newMFecha;
 	}
 	

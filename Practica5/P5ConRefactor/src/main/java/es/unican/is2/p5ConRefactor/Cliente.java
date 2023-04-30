@@ -5,29 +5,24 @@ import java.util.List;
 
 public class Cliente {
 	
-	public String nombre;
-	public String calle;
-	public String zip;
-	public String localidad;
-	public String telefono;
-	public String dni;
+	private String nombre;
+	private String telefono;
+	private String dni;
+	
+	private Direccion direccion;
 	
     private List<Cuenta> Cuentas = new LinkedList<Cuenta>();
 
  	public Cliente(String titular, String calle, String zip, String localidad, 
- 			String telefono, String dni) {  
+ 			String telefono, String dni, Direccion direccion) {  
 		this.nombre = titular;
-		this.calle = calle;
-		this.zip = zip;
-		this.localidad = localidad;
 		this.telefono = telefono;
 		this.dni = dni;
+		this.direccion = direccion;
 	}
 	
-	public void cambiaDireccion(String calle, String zip, String localidad) {
-		this.calle = calle;
-		this.zip = zip;
-		this.localidad = localidad;
+	public void cambiaDireccion(Direccion direccion) {
+		this.direccion = direccion;
 	}
 	
 	public void anhadeCuenta(Cuenta c) {
@@ -52,24 +47,16 @@ public class Cliente {
 		return nombre;
 	}
 
-	public String getCalle() {
-		return calle;
-	}
-
-	public String getZip() {
-		return zip;
-	}
-
-	public String getLocalidad() {
-		return localidad;
-	}
-
 	public String getTelefono() {
 		return telefono;
 	}
 
 	public String getDni() {
 		return dni;
+	}
+	
+	public Direccion getDireccion() {
+		return this.direccion;
 	}
 	
 	

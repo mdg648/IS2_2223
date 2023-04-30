@@ -12,9 +12,12 @@ public class Credito extends Tarjeta {
 	private List<Movimiento> mMovimientosMensuales;
 	private List<Movimiento> mhistoricoMovimientos;
 	
+	// refactorizacion: definicion de constante
+	private static final double COMISION = 0.05;
 	
-	public Credito(String numero, String titular, CuentaAhorro c, double credito) {
-		super(numero, titular, c);
+	
+	public Credito(String numero, String titular, CuentaAhorro c, double credito, LocalDate date) {
+		super(numero, titular, c, date);
 		mCredito = credito;
 		mMovimientosMensuales = new LinkedList<Movimiento>();
 		mhistoricoMovimientos = new LinkedList<Movimiento>();
@@ -33,10 +36,10 @@ public class Credito extends Tarjeta {
 		
 		Movimiento m = new Movimiento();
 		LocalDateTime now = LocalDateTime.now();
-		m.setF(now);
-		m.setC("Retirada en cajero automático");
-		x += x * 0.05; // Añadimos una comisión de un 5%
-		m.setI(-x);
+		m.setFecha(now);
+		m.setConcepto("Retirada en cajero automático");
+		x += x * COMISION; // Añadimos una comisión de un 5%
+		m.setImporte(-x);
 		
 		if (getGastosAcumulados()+x > mCredito)
 			throw new saldoInsuficienteException("Crédito insuficiente");
@@ -55,9 +58,9 @@ public class Credito extends Tarjeta {
 		
 		Movimiento m = new Movimiento();
 		LocalDateTime now = LocalDateTime.now();
-		m.setF(now);
-		m.setC("Compra a crédito en: " + datos);
-		m.setI(-x);
+		m.setFecha(now);
+		m.setConcepto("Compra a crédito en: " + datos);
+		m.setImporte(-x);
 		mMovimientosMensuales.add(m);
 	}
 	
@@ -65,15 +68,11 @@ public class Credito extends Tarjeta {
 		double r = 0.0;
 		for (int i = 0; i < this.mMovimientosMensuales.size(); i++) {
 			Movimiento m = (Movimiento) mMovimientosMensuales.get(i);
-			r += m.getI();
+			r += m.getImporte();
 		}
 		return -r;
 	}
-	
-	
-	public LocalDate getCaducidadCredito() {
-		return this.mCuentaAsociada.getCaducidadCredito();
-	}
+
 
 	/**
 	 * Método que se invoca automáticamente el día 1 de cada mes
@@ -81,14 +80,14 @@ public class Credito extends Tarjeta {
 	public void liquidar() {
 		Movimiento liq = new Movimiento();
 		LocalDateTime now = LocalDateTime.now();
-		liq.setF(now);
-		liq.setC("Liquidación de operaciones tarjeta crédito");
+		liq.setFecha(now);
+		liq.setConcepto("Liquidación de operaciones tarjeta crédito");
 		double r = 0.0;
 		for (int i = 0; i < this.mMovimientosMensuales.size(); i++) {
 			Movimiento m = (Movimiento) mMovimientosMensuales.get(i);
-			r += m.getI();
+			r += m.getImporte();
 		}
-		liq.setI(r);
+		liq.setImporte(r);
 	
 		if (r != 0)
 			mCuentaAsociada.addMovimiento(liq);
@@ -108,5 +107,6 @@ public class Credito extends Tarjeta {
 	public List<Movimiento> getMovimientos() {
 		return mhistoricoMovimientos;
 	}
+
 
 }

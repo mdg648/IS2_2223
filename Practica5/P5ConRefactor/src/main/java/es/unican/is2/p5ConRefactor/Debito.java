@@ -5,9 +5,13 @@ import java.time.LocalDate;
 public class Debito extends Tarjeta {
 	
 	private double saldoDiarioDisponible;
+	private double limiteDebito;
+	
+	private static final int LIMITE_DEBITO = 1000;
 
-	public Debito(String numero, String titular, CuentaAhorro c) {
-		super(numero, titular, c);
+	public Debito(String numero, String titular, CuentaAhorro c, LocalDate date) {
+		super(numero, titular, c, date);
+		limiteDebito = LIMITE_DEBITO;
 	}
 	
 	@Override
@@ -28,19 +32,19 @@ public class Debito extends Tarjeta {
 		saldoDiarioDisponible-=x;
 	}
 	
-	public LocalDate getCaducidadDebito() {
-		return this.mCuentaAsociada.getCaducidadDebito();
-	}
-	
 	/**
 	 * Método invocado automáticamente a las 00:00 de cada día
 	 */
 	public void restableceSaldo() {
-		saldoDiarioDisponible = mCuentaAsociada.getLimiteDebito();
+		saldoDiarioDisponible = this.limiteDebito;
 	}
 	
 	public CuentaAhorro getCuentaAsociada() {
 		return mCuentaAsociada;
+	}
+
+	public double getLimiteDebito() {
+		return limiteDebito;
 	}
 
 }

@@ -4,4 +4,24 @@
   <artifactId>p5SinRefactor</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>P5SinRefactor</name>
+  
+  <dependencies>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.9.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
 </project>
