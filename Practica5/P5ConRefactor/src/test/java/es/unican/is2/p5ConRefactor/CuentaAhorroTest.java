@@ -51,7 +51,6 @@ public class CuentaAhorroTest {
 	
 	@Test
 	public void testRetirarSinConcepto() {
-		
 		try {
 			sut.retirar(-10);
 			fail("Debería lanzar DatoErroneoException");

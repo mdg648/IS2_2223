@@ -31,11 +31,12 @@ public class CuentaAhorro extends Cuenta {
 	
 	
 	private void operacion(String concepto, double x, boolean retirar) throws saldoInsuficienteException, datoErroneoException {
-		String msg;
+		double importe = x;
+		String msg = null;
 		if (retirar) {
 			if (getSaldo() < x)
 				throw new saldoInsuficienteException("Saldo insuficiente");
-			x = -x;
+			 importe = -x;
 			msg = "No se puede retirar una cantidad negativa";
 			
 		} else {
@@ -57,7 +58,7 @@ public class CuentaAhorro extends Cuenta {
 		LocalDateTime now = LocalDateTime.now();
 		m.setFecha(now);
 		m.setConcepto(concepto);
-		m.setImporte(x);
+		m.setImporte(importe);
 		this.mMovimientos.add(m);		
 	}
 	

@@ -7,7 +7,7 @@ public class Debito extends Tarjeta {
 	private double saldoDiarioDisponible;
 	private double limiteDebito;
 	
-	private static final int LIMITE_DEBITO = 1000;
+	private static final double LIMITE_DEBITO = 1000;
 
 	public Debito(String numero, String titular, CuentaAhorro c, LocalDate date) {
 		super(numero, titular, c, date);
