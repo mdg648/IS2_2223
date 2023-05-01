@@ -8,48 +8,48 @@ public class CuentaAhorro extends Cuenta {
 
 	private List<Movimiento> mMovimientos;
 
-	public CuentaAhorro(String numCuenta) {
+	public CuentaAhorro(String numCuenta) { // WMC + 1
 		super(numCuenta);
 		mMovimientos = new LinkedList<Movimiento>();
 	}
 
-	public void ingresar(double x) throws datoErroneoException {
+	public void ingresar(double x) throws datoErroneoException { // WMC + 1
 		operacion(null, x, false);
 	}
 
-	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException {
+	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // WMC + 1
 		operacion(null, x, true);
 	}
 
-	public void ingresar(String concepto, double x) throws datoErroneoException {
+	public void ingresar(String concepto, double x) throws datoErroneoException { // WMC + 1
 		operacion(concepto, x, false);
 	}
 
-	public void retirar(String concepto, double x) throws saldoInsuficienteException, datoErroneoException {
+	public void retirar(String concepto, double x) throws saldoInsuficienteException, datoErroneoException { // WMC + 1
 		operacion(concepto, x, true);
 	}
 	
 	
-	private void operacion(String concepto, double x, boolean retirar) throws saldoInsuficienteException, datoErroneoException {
+	private void operacion(String concepto, double x, boolean retirar) throws saldoInsuficienteException, datoErroneoException { // WMC + 1
 		double importe = x;
 		String msg = null;
-		if (retirar) {
-			if (getSaldo() < x)
+		if (retirar) { // WMC + 1 Ccog + 1
+			if (getSaldo() < x) // WMC + 1 Ccog + 2
 				throw new saldoInsuficienteException("Saldo insuficiente");
 			 importe = -x;
 			msg = "No se puede retirar una cantidad negativa";
 			
-		} else {
+		} else { // Ccog + 1
 			msg = "No se puede ingresar una cantidad negativa";
 		}
 		
-		if (x <= 0)
+		if (x <= 0) // WMC + 1 Ccog + 1
 			throw new datoErroneoException(msg);
 		
-		if (concepto == null) {
-			if (retirar) {
+		if (concepto == null) { // WMC + 1 Ccog + 1
+			if (retirar) { // WMC + 1 Ccog + 2
 				concepto = "Retirada de efectivo";
-			} else {
+			} else { // Ccog + 1
 				concepto = "Ingreso en efectivo";
 			}
 		}
@@ -62,20 +62,20 @@ public class CuentaAhorro extends Cuenta {
 		this.mMovimientos.add(m);		
 	}
 	
-	public double getSaldo() {
+	public double getSaldo() { // WMC + 1
 		double r = 0.0;
-		for (int i = 0; i < this.mMovimientos.size(); i++) {
+		for (int i = 0; i < this.mMovimientos.size(); i++) { // WMC + 1
 			Movimiento m = (Movimiento) mMovimientos.get(i);
 			r += m.getImporte();
 		}
 		return r;
 	}
 
-	public void addMovimiento(Movimiento m) {
+	public void addMovimiento(Movimiento m) { // WMC + 1
 		mMovimientos.add(m);
 	}
 
-	public List<Movimiento> getMovimientos() {
+	public List<Movimiento> getMovimientos() { // WMC + 1
 		return mMovimientos;
 	}
 

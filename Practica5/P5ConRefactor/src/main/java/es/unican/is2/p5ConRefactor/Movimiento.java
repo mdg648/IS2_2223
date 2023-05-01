@@ -9,27 +9,27 @@ public class Movimiento {
 
 	// refactorizacion: cambio de nombres
 	
-	public double getImporte() {
+	public double getImporte() { // WMC + 1
 		return mImporte;
 	}
 
-	public void setImporte(double newMImporte) {
+	public void setImporte(double newMImporte) { // WMC + 1
 		mImporte = newMImporte;
 	}
 	
-	public String getConcepto() {
+	public String getConcepto() { // WMC + 1
 		return mConcepto;
 	}
 
-	public void setConcepto(String newMConcepto) {
+	public void setConcepto(String newMConcepto) { // WMC + 1
 		mConcepto = newMConcepto;
 	}
 
-	public LocalDateTime getFecha() {
+	public LocalDateTime getFecha() { // WMC + 1
 		return mFecha;
 	}
 
-	public void setFecha(LocalDateTime newMFecha) {
+	public void setFecha(LocalDateTime newMFecha) { // WMC + 1
 		mFecha = newMFecha;
 	}
 	
