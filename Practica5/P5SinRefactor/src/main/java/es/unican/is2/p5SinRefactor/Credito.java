@@ -40,7 +40,7 @@ public class Credito extends Tarjeta {
 		
 		if (getGastosAcumulados()+x > mCredito) // WMC + 1 Ccog + 1
 			throw new saldoInsuficienteException("Crédito insuficiente");
-		else {
+		else { // Ccog + 1
 			mMovimientosMensuales.add(m);
 		}
 	}
